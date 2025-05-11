@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SequentialRegisterLoginSuite" parallel="false">
+
+    <!-- Step 1: calc on Chrome -->
+    <test name="Chrome - test_calc">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="test.test_calc"/>
+        </classes>
+    </test>
+
+    <!-- Step 2: Login on Chrome -->
+
+
+    <!-- Step 3: calc on Firefox -->
+    <test name="Firefox - User Register">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="test.test_calc"/>
+        </classes>
+    </test>
+
+
+
+</suite>
