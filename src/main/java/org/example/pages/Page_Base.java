@@ -13,8 +13,16 @@ public class Page_Base {
     }
 
     public void Enter_text(By elementLocator, String text) {
-        driver.findElement(elementLocator).sendKeys(text);
+        WebElement element= driver.findElement(elementLocator);
+        element.clear();
+        element.sendKeys(text);
+
     }
+
+    public String getText(By locator) {
+        return driver.findElement(locator).getText();
+    }
+
 
     public void Clk_Button(By elementLocator) {
         driver.findElement(elementLocator).click();

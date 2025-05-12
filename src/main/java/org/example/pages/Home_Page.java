@@ -9,7 +9,7 @@ public class Home_Page extends Page_Base {
     By multi_button=By.cssSelector(("button[data-qa='btn-multiply']"));
     By input1=By.cssSelector("input[data-qa='input-num1']");
     By input2=By.cssSelector("input[data-qa='input-num2']");
-    // تعريف عنصر زر التسجيل/الدخول
+    By result = By.cssSelector("span[data-qa='result-value']");    // تعريف عنصر زر التسجيل/الدخول
     By signup_login_button = By.cssSelector("a i.fa-lock");
 
     public Home_Page(WebDriver driver) {
@@ -33,7 +33,13 @@ public class Home_Page extends Page_Base {
     public void press_multi(){
         Clk_Button(multi_button);
     }
-    // الضغط على زر التسجيل/الدخول
+
+    public String getResultText() {
+        return getText(result);
+    }
+
+    // الضغط على زر التسجيل
+    // /الدخول
     public void click_signup_login_button() {
         // استخدام انتظار قبل الضغط
         wait(signup_login_button,10);
