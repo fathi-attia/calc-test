@@ -13,17 +13,27 @@ public class Test_Base {
     @Parameters("browser")
     @BeforeClass
     public void setup(@Optional("chrome") String browserName) {
+        // ✅ قراءة القيمة المرسلة من GitHub Actions أو الجهاز
+        String envProfile = System.getProperty("envProfile", "local");
+        System.out.println(" Running with envProfile = " + envProfile);
+
+        // ✅ التحقق لو بيئة CI، شغّل المتصفح في headless mode
+        boolean isHeadless = envProfile.equalsIgnoreCase("ci");
+
         if (browserName.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless=new");                       // Use headless mode
-            options.addArguments("--no-sandbox");                         // Needed for CI
-            options.addArguments("--disable-dev-shm-usage");              // Fix for memory issue
-            options.addArguments("--disable-gpu");                        // Optional but safe
-            options.addArguments("--remote-allow-origins=*");          // Required for Chrome v111+
+            if (isHeadless) {
+                options.addArguments("--headless=new");
+                options.addArguments("--disable-gpu");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+            }
             driver = new ChromeDriver(options);
         } else if (browserName.equalsIgnoreCase("firefox")) {
             FirefoxOptions options = new FirefoxOptions();
-            options.addArguments("-headless");                            // Use headless mode
+            if (isHeadless) {
+                options.addArguments("-headless");
+            }
             driver = new FirefoxDriver(options);
         }
 

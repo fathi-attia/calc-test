@@ -6,7 +6,7 @@ on:
 
 jobs:
   selenium-tests:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted  # يدعم جهازك المحلي، ويعمل أيضًا على GitHub-hosted لو ضبطت runner group
 
     steps:
       - name: Checkout Test Project
@@ -18,5 +18,14 @@ jobs:
           distribution: temurin
           java-version: 21
 
+      - name: Detect Environment Profile
+        run: |
+          if [[ "$RUNNER_OS" == "Windows" ]]; then
+            echo "ENV_PROFILE=local" >> $GITHUB_ENV
+          else
+            echo "ENV_PROFILE=ci" >> $GITHUB_ENV
+          fi
+        shell: bash
+
       - name: Run Selenium Tests
-        run: mvn clean test
+        run: mvn test -DenvProfile=${{ env.ENV_PROFILE }}

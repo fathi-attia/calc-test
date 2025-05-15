@@ -13,7 +13,7 @@
 
 
     <!-- Step 3: calc on Firefox -->
-    <test name="Firefox - User Register">
+    <test name="Firefox -test-calc">
         <parameter name="browser" value="firefox"/>
         <classes>
             <class name="test.test_calc"/>
