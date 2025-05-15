@@ -16,7 +16,7 @@ public class test_calc extends Test_Base {
         homePageObject.enter_calc_no("30", "10");
         homePageObject.press_add();
         Thread.sleep(100);
-        Assert.assertEquals(homePageObject.getResultText().trim(), "400", "Addition result failed");
+        Assert.assertEquals(homePageObject.getResultText().trim(), "40", "Addition result failed");
     }
 
     @Test
