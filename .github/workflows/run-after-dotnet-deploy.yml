@@ -1,15 +1,16 @@
-name: Run Selenium After .NET Deployment
+name: Run UI Tests in CI then Local
 
 on:
   repository_dispatch:
     types: [dotnet_deploy_success]
 
 jobs:
-  selenium-tests:
-    runs-on: self-hosted  # يدعم جهازك المحلي، ويعمل أيضًا على GitHub-hosted لو ضبطت runner group
+  run-in-ci:
+    name: Run in GitHub CI
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Test Project
+      - name: Checkout Code
         uses: actions/checkout@v3
 
       - name: Set up Java
@@ -18,14 +19,23 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Detect Environment Profile
-        run: |
-          if [[ "$RUNNER_OS" == "Windows" ]]; then
-            echo "ENV_PROFILE=local" >> $GITHUB_ENV
-          else
-            echo "ENV_PROFILE=ci" >> $GITHUB_ENV
-          fi
-        shell: bash
+      - name: Run Selenium UI Tests in CI
+        run: mvn test -DenvProfile=ci
 
-      - name: Run Selenium Tests
-        run: mvn test -DenvProfile=${{ env.ENV_PROFILE }}
+  run-in-local:
+    name: Run in Local Machine
+    runs-on: self-hosted
+    needs: run-in-ci
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Run Selenium UI Tests in Local
+        run: mvn test -DenvProfile=local
