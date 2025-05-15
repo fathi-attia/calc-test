@@ -15,7 +15,7 @@ public class test_calc extends Test_Base {
         homePageObject = new Home_Page(driver);
         homePageObject.enter_calc_no("30", "10");
         homePageObject.press_add();
-        Thread.sleep(100);
+        Thread.sleep(1000);
         Assert.assertEquals(homePageObject.getResultText().trim(), "40", "Addition result failed");
     }
 
@@ -24,7 +24,7 @@ public class test_calc extends Test_Base {
         homePageObject = new Home_Page(driver);
         homePageObject.enter_calc_no("30", "10");
         homePageObject.press_sub();
-        Thread.sleep(100);
+        Thread.sleep(1000);
         Assert.assertEquals(homePageObject.getResultText().trim(), "20", "Subtraction result failed");
 
 
@@ -35,7 +35,7 @@ public class test_calc extends Test_Base {
         homePageObject = new Home_Page(driver);
         homePageObject.enter_calc_no("30", "10");
         homePageObject.press_multi();
-        Thread.sleep(100);
+        Thread.sleep(1000);
         Assert.assertEquals(homePageObject.getResultText().trim(), "300", "Multiplication result failed");
 
 
