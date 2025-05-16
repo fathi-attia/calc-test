@@ -1,5 +1,4 @@
 name: Run UI Tests (Docker First)
-
 on:
   repository_dispatch:
     types: [dotnet_deploy_success]
