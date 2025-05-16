@@ -1,13 +1,25 @@
-name: Run UI Tests in CI then Local
+name: Run UI Tests (Docker First)
 
 on:
   repository_dispatch:
     types: [dotnet_deploy_success]
 
 jobs:
+  run-in-docker:
+    name: Run in Docker Grid
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run Selenium UI Tests on Docker Grid
+        run: mvn test -DenvProfile=docker
+
   run-in-ci:
     name: Run in GitHub CI
     runs-on: ubuntu-latest
+    needs: run-in-docker
 
     steps:
       - name: Checkout Code

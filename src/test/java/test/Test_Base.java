@@ -5,36 +5,51 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class Test_Base {
     WebDriver driver;
 
     @Parameters("browser")
     @BeforeClass
-    public void setup(@Optional("chrome") String browserName) {
-        // ✅ قراءة القيمة المرسلة من GitHub Actions أو الجهاز
-        String envProfile = System.getProperty("envProfile", "local");
-        System.out.println(" Running with envProfile = " + envProfile);
-
-        // ✅ التحقق لو بيئة CI، شغّل المتصفح في headless mode
+    public void setup(@Optional("chrome") String browserName) throws MalformedURLException {
+        String envProfile = System.getProperty("envProfile", "docker");
+        System.out.println("Running with envProfile = " + envProfile);
         boolean isHeadless = envProfile.equalsIgnoreCase("ci");
 
-        if (browserName.equalsIgnoreCase("chrome")) {
-            ChromeOptions options = new ChromeOptions();
-            if (isHeadless) {
-                options.addArguments("--headless=new");
-                options.addArguments("--disable-gpu");
-                options.addArguments("--no-sandbox");
-                options.addArguments("--disable-dev-shm-usage");
+        if (envProfile.equalsIgnoreCase("docker")) {
+            if (browserName.equalsIgnoreCase("chrome")) {
+                ChromeOptions options = new ChromeOptions();
+                driver = new RemoteWebDriver(new URL("http://localhost:4445/wd/hub"), options);
+            } else if (browserName.equalsIgnoreCase("firefox")) {
+                FirefoxOptions options = new FirefoxOptions();
+                driver = new RemoteWebDriver(new URL("http://localhost:4445/wd/hub"), options);
+            } else {
+                throw new IllegalArgumentException("Unsupported browser for Docker: " + browserName);
             }
-            driver = new ChromeDriver(options);
-        } else if (browserName.equalsIgnoreCase("firefox")) {
-            FirefoxOptions options = new FirefoxOptions();
-            if (isHeadless) {
-                options.addArguments("-headless");
+        } else {
+            if (browserName.equalsIgnoreCase("chrome")) {
+                ChromeOptions options = new ChromeOptions();
+                if (isHeadless) {
+                    options.addArguments("--headless=new");
+                    options.addArguments("--disable-gpu");
+                    options.addArguments("--no-sandbox");
+                    options.addArguments("--disable-dev-shm-usage");
+                }
+                driver = new ChromeDriver(options);
+            } else if (browserName.equalsIgnoreCase("firefox")) {
+                FirefoxOptions options = new FirefoxOptions();
+                if (isHeadless) {
+                    options.addArguments("-headless");
+                }
+                driver = new FirefoxDriver(options);
+            } else {
+                throw new IllegalArgumentException("Unsupported browser: " + browserName);
             }
-            driver = new FirefoxDriver(options);
         }
 
         driver.manage().window().maximize();
