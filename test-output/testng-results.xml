@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-05-18T13:43:23 EEST" name="SequentialRegisterLoginSuite" finished-at="2025-05-18T13:44:03 EEST" duration-ms="39938">
+    <groups>
+    </groups>
+    <test started-at="2025-05-18T13:43:23 EEST" name="IsTestngXmlWorking" finished-at="2025-05-18T13:43:23 EEST" duration-ms="41">
+      <class name="test.TestngVerification">
+        <test-method signature="confirmXmlRunning()[pri:0, instance:test.TestngVerification@75c072cb]" started-at="2025-05-18T13:43:23 EEST" name="confirmXmlRunning" finished-at="2025-05-18T13:43:23 EEST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- confirmXmlRunning -->
+      </class> <!-- test.TestngVerification -->
+    </test> <!-- IsTestngXmlWorking -->
+    <test started-at="2025-05-18T13:43:23 EEST" name="Chrome - test_calc" finished-at="2025-05-18T13:43:45 EEST" duration-ms="22161">
+      <class name="test.test_calc">
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:test.test_calc@23529fee]" started-at="2025-05-18T13:43:23 EEST" name="setup" finished-at="2025-05-18T13:43:35 EEST" duration-ms="12353" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="testAddition()[pri:0, instance:test.test_calc@23529fee]" started-at="2025-05-18T13:43:35 EEST" name="testAddition" finished-at="2025-05-18T13:43:37 EEST" duration-ms="1496" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAddition -->
+        <test-method signature="testMultiplication()[pri:0, instance:test.test_calc@23529fee]" started-at="2025-05-18T13:43:37 EEST" name="testMultiplication" finished-at="2025-05-18T13:43:38 EEST" duration-ms="1381" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testMultiplication -->
+        <test-method signature="testSubtraction()[pri:0, instance:test.test_calc@23529fee]" started-at="2025-05-18T13:43:38 EEST" name="testSubtraction" finished-at="2025-05-18T13:43:40 EEST" duration-ms="1564" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubtraction -->
+        <test-method is-config="true" signature="close_chrome()[pri:0, instance:test.test_calc@23529fee]" started-at="2025-05-18T13:43:40 EEST" name="close_chrome" finished-at="2025-05-18T13:43:45 EEST" duration-ms="5362" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close_chrome -->
+      </class> <!-- test.test_calc -->
+    </test> <!-- Chrome - test_calc -->
+    <test started-at="2025-05-18T13:43:45 EEST" name="Firefox -test-calc" finished-at="2025-05-18T13:44:03 EEST" duration-ms="17692">
+      <class name="test.test_calc">
+        <test-method is-config="true" signature="setupextentReport(java.lang.String)[pri:0, instance:test.test_calc@60dcc9fe]" started-at="2025-05-18T13:43:22 EEST" name="setupextentReport" finished-at="2025-05-18T13:43:23 EEST" duration-ms="389" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupextentReport -->
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:test.test_calc@60dcc9fe]" started-at="2025-05-18T13:43:45 EEST" name="setup" finished-at="2025-05-18T13:43:52 EEST" duration-ms="7251" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="testAddition()[pri:0, instance:test.test_calc@60dcc9fe]" started-at="2025-05-18T13:43:52 EEST" name="testAddition" finished-at="2025-05-18T13:43:54 EEST" duration-ms="1538" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAddition -->
+        <test-method signature="testMultiplication()[pri:0, instance:test.test_calc@60dcc9fe]" started-at="2025-05-18T13:43:54 EEST" name="testMultiplication" finished-at="2025-05-18T13:43:55 EEST" duration-ms="1383" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testMultiplication -->
+        <test-method signature="testSubtraction()[pri:0, instance:test.test_calc@60dcc9fe]" started-at="2025-05-18T13:43:55 EEST" name="testSubtraction" finished-at="2025-05-18T13:43:57 EEST" duration-ms="1377" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubtraction -->
+        <test-method is-config="true" signature="close_chrome()[pri:0, instance:test.test_calc@60dcc9fe]" started-at="2025-05-18T13:43:57 EEST" name="close_chrome" finished-at="2025-05-18T13:44:03 EEST" duration-ms="6138" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close_chrome -->
+        <test-method is-config="true" signature="flushExtentReport()[pri:0, instance:test.test_calc@60dcc9fe]" started-at="2025-05-18T13:44:03 EEST" name="flushExtentReport" finished-at="2025-05-18T13:44:03 EEST" duration-ms="406" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- flushExtentReport -->
+      </class> <!-- test.test_calc -->
+    </test> <!-- Firefox -test-calc -->
+  </suite> <!-- SequentialRegisterLoginSuite -->
+</testng-results>

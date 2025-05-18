@@ -7,17 +7,34 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Test_Base {
     WebDriver driver;
+    static ExtentReports extent;
+    static ExtentTest testLogger;
+
+    @BeforeSuite
+    @Parameters("browser")
+    public void setupextentReport(@Optional("chrome") String browsername) {
+        ExtentSparkReporter spark = new ExtentSparkReporter("test-output/extent-report.html");
+        extent = new ExtentReports();
+        extent.attachReporter(spark);
+        extent.setSystemInfo("OS", "Windows");
+        extent.setSystemInfo("Browser", browsername);
+        extent.setSystemInfo("Version", "1.0");
+        extent.setSystemInfo("Author", "Your Name");
+    }
 
     @Parameters("browser")
     @BeforeClass
     public void setup(@Optional("chrome") String browserName) throws MalformedURLException {
-        String envProfile = System.getProperty("envProfile", "docker");
+        String envProfile = System.getProperty("envProfile", "local");
         System.out.println("Running with envProfile = " + envProfile);
         boolean isHeadless = envProfile.equalsIgnoreCase("ci");
 
@@ -60,5 +77,12 @@ public class Test_Base {
     public void close_chrome() throws InterruptedException {
         Thread.sleep(5000);  // Optional delay for debugging
         driver.quit();
+    }
+
+    @AfterSuite
+    public void flushExtentReport() {
+        if (extent != null) {
+            extent.flush();
+        }
     }
 }

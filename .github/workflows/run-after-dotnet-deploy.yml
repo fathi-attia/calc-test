@@ -35,7 +35,7 @@ jobs:
         run: mvn test -DenvProfile=ci
 
   run-in-local:
-    name: Run in Local Machine
+    name: Run in Local Machinef
     runs-on: self-hosted
     needs: run-in-ci
 

@@ -1,6 +1,17 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="SequentialRegisterLoginSuite" parallel="false">
 
+<suite name="SequentialRegisterLoginSuite" parallel="false">
+    <listeners>
+        <listener class-name="org.testng.reporters.XMLReporter"/>
+        <listener class-name="org.testng.reporters.JUnitXMLReporter"/>
+        <listener class-name="org.testng.reporters.SuiteHTMLReporter"/>
+        <listener class-name="org.testng.reporters.TestHTMLReporter"/>
+    </listeners>
+    <test name="IsTestngXmlWorking">
+        <classes>
+            <class name="test.TestngVerification"/>
+        </classes>
+    </test>
     <!-- Step 1: calc on Chrome -->
     <test name="Chrome - test_calc">
         <parameter name="browser" value="chrome"/>
@@ -19,7 +30,5 @@
             <class name="test.test_calc"/>
         </classes>
     </test>
-
-
 
 </suite>
